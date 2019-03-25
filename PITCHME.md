@@ -4,12 +4,12 @@
 ![alt text](assets/oracle.gif "Oracle")
 ![alt text](assets/debezium.png "Debezium")
 ![alt text](assets/kafka.png "Kafka")
----
 +++
 # Kafka installation
----
++++
 ## Kafka download
 https://kafka.apache.org/quickstart
++++
 ---
 # Create a basic publisher
 +++
@@ -20,7 +20,7 @@ dotnet new console -n publisher
 cd publisher
 dotnet add package -v 1.0.0-RC1 Confluent.Kafka'
 ~~~~ 
----
++++
 ## Add code for publication
 ~~~~ 
         var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
@@ -41,3 +41,4 @@ dotnet add package -v 1.0.0-RC1 Confluent.Kafka'
             }
         }
 ~~~~ 
++++
