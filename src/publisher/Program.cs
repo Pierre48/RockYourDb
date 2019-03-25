@@ -5,7 +5,7 @@ namespace publisher
 {
     class Program
     {
-        static async void Main(string[] args)
+        static void Main(string[] args)
         {
             var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
 
@@ -16,8 +16,7 @@ namespace publisher
             {
                 try
                 {
-                    var dr = await p.ProduceAsync("test-topic", new Message<Null, string> { Value = "test" });
-                    Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+                    p.ProduceAsync("test-topic", new Message<Null, string> { Value = "test" }).Wait();
                 }
                 catch (ProduceException<Null, string> e)
                 {
