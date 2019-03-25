@@ -5,14 +5,14 @@
 ![alt text](assets/debezium.png "Debezium")
 ![alt text](assets/kafka.png "Kafka")
 ---
-++++
++++
 # Kafka installation
 ---
 ## Kafka download
 https://kafka.apache.org/quickstart
-+++
-# Create a basic publisher
 ---
+# Create a basic publisher
++++
 ## Create a console application
 ~~~~ 
 cd src
