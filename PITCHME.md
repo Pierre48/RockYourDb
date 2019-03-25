@@ -4,11 +4,22 @@
 ![alt text](assets/oracle.gif "Oracle")
 ![alt text](assets/debezium.png "Debezium")
 ![alt text](assets/kafka.png "Kafka")
-+++
+---
 # Kafka installation
 +++
 ## Kafka download
-https://kafka.apache.org/quickstart
+https://www.apache.org/dyn/closer.cgi?path=/kafka/2.1.0/kafka_2.11-2.1.0.tgz
++++
+## Unzip it
+~~~~
+tar -xzf kafka_2.11-2.1.0.tgz
+cd kafka_2.11-2.1.0
+~~~~
++++
+### Run it 
+~~~~
+bin/kafka-server-start.sh config/server.properties
+~~~~
 +++
 ---
 # Create a basic publisher
