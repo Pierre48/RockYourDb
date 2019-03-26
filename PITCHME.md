@@ -16,9 +16,14 @@ tar -xzf kafka_2.11-2.1.0.tgz
 cd kafka_2.11-2.1.0
 ~~~~
 +++
-### Run it 
+### Start a ZooKeeper
 ~~~~
 .\bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+~~~~
++++
+### Start a Kafka server
+~~~~
+.\bin\windows\kafka-server-start config/server.properties
 ~~~~
 +++
 ---
