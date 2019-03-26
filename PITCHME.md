@@ -27,7 +27,7 @@ cd kafka_2.11-2.1.0
 ~~~~
 +++
 ---
-# Create a basic publisher
+# Create a basic publisher / consumer
 +++
 ## Create a console application
 ~~~~ 
@@ -51,5 +51,46 @@ dotnet add package -v 1.0.0-RC1 Confluent.Kafka'
                     Console.WriteLine($"Delivery failed: {e.Error.Reason}");
                 }
             }
+~~~~ 
++++
+## Create another console application
+~~~~ 
+cd src
+dotnet new console -n consumer
+cd consumer
+dotnet add package -v 1.0.0-RC1 Confluent.Kafka'
+~~~~ 
++++
+## Add code to consume message
+~~~~ 
+        var conf = new ConsumerConfig
+        { 
+            GroupId = "test-consumer-group",
+            BootstrapServers = "localhost:9092",
+            AutoOffsetReset = AutoOffsetReset.Earliest
+        };
+
+        using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
+        {
+            c.Subscribe("test-topic");
+            CancellationTokenSource cts = new CancellationTokenSource();
+            Console.CancelKeyPress += (_, e) => {
+                e.Cancel = true; // prevent the process from terminating.
+                cts.Cancel();
+            };
+            try
+            {
+                while (true)
+                {
+                        var cr = c.Consume(cts.Token);
+                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                c.Close();
+                throw;
+            }
+        }
 ~~~~ 
 +++
